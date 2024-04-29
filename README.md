@@ -5,7 +5,7 @@ ReactJs
 CSS
 SCSS
 
-Preview - [LINK](https://kovachhh.github.io/phones_shop)
+Preview - [LINK](https://kovachhh.github.io/Phones_shop)
 
 Mock-up - [LINK](https://www.figma.com/file/uEetgWenSRxk9jgiym6Yzp/Phone-catalog-redesign?node-id=1%3A2)
 
