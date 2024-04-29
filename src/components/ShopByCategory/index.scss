@@ -1,0 +1,15 @@
+@import '../../styles/main';
+
+.shopByCategory {
+  &__title {
+    @extend %h1;
+
+    margin-bottom: 24px;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+  }
+}

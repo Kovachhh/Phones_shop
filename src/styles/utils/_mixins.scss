@@ -1,0 +1,31 @@
+@mixin hover($property, $toValue) {
+  transition: #{$property} $effect-duration;
+
+  &:hover {
+    #{$property}: $toValue;
+  }
+}
+
+@mixin logo {
+  transition: transform $effect-duration;
+
+    &:hover {
+      @include hover(transform, scale(1.1));
+    }
+}
+
+@mixin nav-link {
+  text-decoration: none;
+  color: $color-secondary;
+  position: relative;
+
+  &:hover {
+    color: $color-primary;
+  }
+}
+
+
+@mixin page-content-margin {
+  width: 100%;
+  margin-block: 24px 80px;
+}
