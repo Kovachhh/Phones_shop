@@ -66,8 +66,14 @@
 
       &__info {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
         gap: 16px;
+
+      @include on-desktop {
+          flex-direction: row;
+          gap: 16px;
+        }
+
       }
 
       &__image {
@@ -164,8 +170,12 @@
 
     &__left-panel {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       gap: 16px;
+
+      @include on-desktop {
+        flex-direction: column;
+      }
 
       &__button {
         width: 80px;
@@ -196,6 +206,11 @@
       display: flex;
       flex-direction: column;
       gap: 24px;
+      margin-inline: 36px;
+
+      @include on-desktop {
+        margin-inline: 0;
+      }
 
       &__colors {
         display: flex;
@@ -382,7 +397,11 @@
     }
 
     &__id {
-      margin-left: 115px;
+      margin-inline: 36px;
+
+      @include on-desktop {
+        margin-inline: 0;
+      }
 
       &__text {
         color: $color-icons;

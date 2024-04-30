@@ -23,10 +23,12 @@ export const CategoryCard: React.FC<Props> = ({ category }) => {
         src={imgUrl}
         alt={`${name} category`}
       />
-      <h3 className="categoryCard__title">
-        {name === 'phones' ? `mobile ${name}` : name}
-      </h3>
-      <p className="categoryCard__models text">{`${modelsLength} models`}</p>
+      <div>
+        <h3 className="categoryCard__title">
+          {name === 'phones' ? `mobile ${name}` : name}
+        </h3>
+        <p className="categoryCard__models text">{`${modelsLength} models`}</p>
+      </div>
     </Link>
   );
 };

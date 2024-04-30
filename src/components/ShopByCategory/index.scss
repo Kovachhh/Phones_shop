@@ -9,7 +9,13 @@
 
   &__list {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     gap: 16px;
+
+    @include on-desktop {
+      flex-direction: row;
+    }
+
+
   }
 }

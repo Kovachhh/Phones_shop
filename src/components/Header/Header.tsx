@@ -28,7 +28,9 @@ export const Header = () => {
   const tablets = getProductsByCategory(products, 'tablets');
   const accessories = getProductsByCategory(products, 'accessories');
   const favorites = products.filter(item => !!item.addedToFavorites);
-  const carts = products.filter(item => !!item.addedToCart);
+  const carts = products
+    .filter(item => !!item.addedToCart)
+    .reduce((acc, item) => acc + item.quantity, 0);
 
   useEffect(() => {
     switch (pathname) {
@@ -172,10 +174,8 @@ export const Header = () => {
               className="header__bar-right__icon__logo"
             />
 
-            {!!carts.length && (
-              <div className="header__bar-right__icon__counter">
-                {carts.length}
-              </div>
+            {!!carts && (
+              <div className="header__bar-right__icon__counter">{carts}</div>
             )}
           </NavLink>
         </div>

@@ -6,9 +6,15 @@
 
 .categoryCard {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  gap: 12px;
   text-decoration: none;
   color: inherit;
+
+  @include on-desktop {
+    flex-direction: column;
+
+  }
 
   &__image {
     width: 368px;
@@ -24,6 +30,9 @@
 
   &__title {
     text-transform: capitalize;
-    margin-block: 24px 4px;
+
+    @include on-desktop {
+      margin-block: 24px 4px;
+    }
   }
 }
