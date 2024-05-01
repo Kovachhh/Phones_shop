@@ -1,0 +1,64 @@
+@import '../../styles/main';
+
+.bm-burger-button {
+  position: relative;
+  margin: 20px;
+  width: 24px;
+  height: 24px;
+}
+
+.bm-burger-bars {
+  background: $color-primary;
+}
+
+.bm-burger-bars-hover {
+  background: $color-secondary;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: $color-secondary;
+}
+
+.bm-menu-wrap {
+  position: fixed;
+  top: 0;
+  height: 100%;
+}
+
+.bm-menu {
+  background: $color-white;
+  padding: 30px 15px 0;
+  font-size: 1.15em;
+}
+
+.bm-item-list {
+  color: $color-elements;
+  padding: 0.8em;
+}
+
+.bm-item {
+  display: inline-block;
+  margin-bottom: 15px;
+
+  @include nav-link;
+
+      font-family: Montserrat, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      line-height: 11px;
+      text-transform: uppercase;
+
+      &:hover::after {
+        @include hover(transform, scale($scale));
+      }
+
+  &:hover {
+    color: $color-primary;
+  }
+}

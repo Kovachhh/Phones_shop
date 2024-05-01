@@ -8,6 +8,7 @@ import { Navbar } from '../Navbar/Navbar';
 import { StateStore } from '../../store/StoreContext';
 import { ICONS } from '../../images';
 import { getProductsByCategory } from '../../helpers/getProductsByCategory';
+import { SideMenu } from '../SideMenu/SideMenu';
 
 const getLinkLogoClass = ({ isActive }: { isActive: boolean }) =>
   cn('header__bar-right__icon--logo--link', {
@@ -17,6 +18,7 @@ const getLinkLogoClass = ({ isActive }: { isActive: boolean }) =>
 export const Header = () => {
   const { pathname } = useLocation();
   const [searchParams, setSearchParams] = useSearchParams();
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
 
   const { products } = useContext(StateStore);
 
@@ -31,6 +33,10 @@ export const Header = () => {
   const carts = products
     .filter(item => !!item.addedToCart)
     .reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    window.addEventListener('resize', () => setScreenWidth(window.innerWidth));
+  }, []);
 
   useEffect(() => {
     switch (pathname) {
@@ -113,73 +119,81 @@ export const Header = () => {
 
   return (
     <header className="header">
-      <div className="header__bar-left">
-        <Navbar />
-      </div>
-
-      <div className="header__bar-right">
-        {isQuery && (
-          <div className="header__bar-right__search">
-            <input
-              type="text"
-              className="header__bar-right__search__query"
-              placeholder={placeholder}
-              value={query}
-              onChange={queryChangeHandler}
-            />
-            {query.length ? (
-              <button
-                data-cy="searchDelete"
-                type="button"
-                className="header__bar-right__search--button"
-                onClick={clearQuery}
-              >
-                <img
-                  src={ICONS.close}
-                  alt="Clear search"
-                  className="header__bar-right__search--icon"
-                />
-              </button>
-            ) : (
-              <img
-                src={ICONS.search}
-                alt="Search"
-                className="header__bar-right__search--icon"
-              />
-            )}
+      {screenWidth > 700 ? (
+        <>
+          <div className="header__bar-left">
+            <Navbar />
           </div>
-        )}
 
-        <div className="header__bar-right__icon">
-          <NavLink to="/favorites" className={getLinkLogoClass}>
-            <img
-              src={ICONS.favorite}
-              alt="Favourites"
-              className="header__bar-right__icon__logo"
-            />
-
-            {!!favorites.length && (
-              <div className="header__bar-right__icon__counter">
-                {favorites.length}
+          <div className="header__bar-right">
+            {isQuery && (
+              <div className="header__bar-right__search">
+                <input
+                  type="text"
+                  className="header__bar-right__search__query"
+                  placeholder={placeholder}
+                  value={query}
+                  onChange={queryChangeHandler}
+                />
+                {query.length ? (
+                  <button
+                    data-cy="searchDelete"
+                    type="button"
+                    className="header__bar-right__search--button"
+                    onClick={clearQuery}
+                  >
+                    <img
+                      src={ICONS.close}
+                      alt="Clear search"
+                      className="header__bar-right__search--icon"
+                    />
+                  </button>
+                ) : (
+                  <img
+                    src={ICONS.search}
+                    alt="Search"
+                    className="header__bar-right__search--icon"
+                  />
+                )}
               </div>
             )}
-          </NavLink>
-        </div>
 
-        <div className="header__bar-right__icon">
-          <NavLink to="/cart" className={getLinkLogoClass}>
-            <img
-              src={ICONS.cart}
-              alt="Cart"
-              className="header__bar-right__icon__logo"
-            />
+            <div className="header__bar-right__icon">
+              <NavLink to="/favorites" className={getLinkLogoClass}>
+                <img
+                  src={ICONS.favorite}
+                  alt="Favourites"
+                  className="header__bar-right__icon__logo"
+                />
 
-            {!!carts && (
-              <div className="header__bar-right__icon__counter">{carts}</div>
-            )}
-          </NavLink>
-        </div>
-      </div>
+                {!!favorites.length && (
+                  <div className="header__bar-right__icon__counter">
+                    {favorites.length}
+                  </div>
+                )}
+              </NavLink>
+            </div>
+
+            <div className="header__bar-right__icon">
+              <NavLink to="/cart" className={getLinkLogoClass}>
+                <img
+                  src={ICONS.cart}
+                  alt="Cart"
+                  className="header__bar-right__icon__logo"
+                />
+
+                {!!carts && (
+                  <div className="header__bar-right__icon__counter">
+                    {carts}
+                  </div>
+                )}
+              </NavLink>
+            </div>
+          </div>
+        </>
+      ) : (
+        <SideMenu />
+      )}
     </header>
   );
 };
