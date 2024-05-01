@@ -41,7 +41,7 @@
 
     &--table {
       display: grid;
-      justify-content: left;
+      justify-content: center;
       grid-template-columns: repeat(auto-fit, minmax(220px, 272px));
       grid-gap: 16px;
     }

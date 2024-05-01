@@ -19,7 +19,7 @@ export const getFilteredProducts = (
 
   switch (sort) {
     case 'age':
-      filteredProducts.sort((item1, item2) => item1.year - item2.year);
+      filteredProducts.sort((item1, item2) => item2.year - item1.year);
       break;
 
     case 'name':
